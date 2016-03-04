@@ -8,7 +8,7 @@ Shayanth Sinnarajah ([ssinnarajah@berkeley.edu](mailto:ssinnarajah@berkeley.edu)
 
 ## Demo Video
 
-See [Prog 02 - B Assignment ] (https://https://www.youtube.com/watch?v=3DjhGH20M-E&feature=youtu.be)
+See [Prog 02 - B Assignment ] (https://www.youtube.com/watch?v=3DjhGH20M-E&feature=youtu.be)
 
 ## Screenshots
 
