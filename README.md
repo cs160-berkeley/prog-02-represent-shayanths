@@ -4,11 +4,11 @@ Briefly describe your app here.
 
 ## Authors
 
-FirstName LastName ([your_email@berkeley.edu](mailto:your_email@berkeley.edu))
+Shayanth Sinnarajah ([ssinnarajah@berkeley.edu](mailto:ssinnarajah@berkeley.edu))
 
 ## Demo Video
 
-See [your demo video title here] (https://link_to_your_video)
+See [Prog 02 - B Assignment ] (https://https://www.youtube.com/watch?v=3DjhGH20M-E&feature=youtu.be)
 
 ## Screenshots
 
