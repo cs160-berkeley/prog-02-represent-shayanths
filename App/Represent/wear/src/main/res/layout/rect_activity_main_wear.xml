@@ -1,0 +1,15 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/framelayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFE4B5"
+    >
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/my_recycler_view"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:scrollbars="horizontal"
+        android:layout_gravity="center" />
+
+</FrameLayout>
