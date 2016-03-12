@@ -13,9 +13,10 @@ See [Prog 02 - C Assignment ] (https://youtu.be/AtMAfXZ9CVQ)
 
 ## Screenshots
 
-<img src="screenshots/main.png" height="400" alt="Screenshot"/>
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Any other support
+<img src="screenshots/Screen Shot 2016-03-12 at 2.50.33 PM.png" height="400" alt="Phone"/>
+<img src="screenshots/Screen Shot 2016-03-12 at 2.51.37 PM.png" height="400" alt="Phone"/>
+<img src="screenshots/Screen Shot 2016-03-12 at 2.51.49 PM.png" height="400" alt="Phone"/>
+<img src="screenshots/Screen Shot 2016-03-12 at 2.50.48 PM.png" height="400" alt="Watch"/>
+<img src="screenshots/Screen Shot 2016-03-12 at 2.50.56 PM.png" height="400" alt="Watch"/>
+<img src="screenshots/Screen Shot 2016-03-12 at 2.51.12 PM.png" height="400" alt="Watch"/>
+<img src="screenshots/Screen Shot 2016-03-12 at 2.52.09 PM.png" height="400" alt="Watch"/>
