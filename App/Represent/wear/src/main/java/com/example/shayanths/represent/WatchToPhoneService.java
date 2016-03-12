@@ -15,9 +15,11 @@ import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.Result;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.wearable.DataMap;
 import com.google.android.gms.wearable.MessageApi;
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
+import com.google.android.gms.wearable.PutDataMapRequest;
 import com.google.android.gms.wearable.Wearable;
 
 import java.util.ArrayList;
@@ -30,8 +32,8 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
     private List<Node> nodes = new ArrayList<>();
     final Service _this = this;
     int candidate_id;
+    String person_data;
     String zipCode;
-    String dataSet;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -54,9 +56,8 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
     public int onStartCommand(Intent intent, int flags, int startId) {
         Bundle extras = intent.getExtras();
         candidate_id = extras.getInt("Cand_ID", -1);
+        person_data = extras.getString("person_data");
         zipCode = extras.getString("ZipCode");
-        dataSet = extras.getString("dataSet");
-
 
         // Send the message with the cat name
         new Thread(new Runnable() {
@@ -66,7 +67,7 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
                 mWatchApiClient.connect();
                 //now that you're connected, send a message with the cat name
                 if (candidate_id != -1){
-                    String newString = Integer.toString(candidate_id) + " " + dataSet;
+
 //                    sendMessage("/send_toast", newString);
                 }
                 else{
@@ -96,12 +97,11 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
                     public void onResult(NodeApi.GetConnectedNodesResult getConnectedNodesResult) {
                         nodes = getConnectedNodesResult.getNodes();
                         Log.d("T", "found nodes");
-
                         //when we find a connected node, we populate the list declared above
                         //finally, we can send a message
                         if (candidate_id != -1) {
-                            String newString = Integer.toString(candidate_id) + " " + dataSet;
-                            sendMessage("/send_toast", newString);
+                            sendMessage("/send_toast", person_data);
+
                         } else {
                             sendMessage("/send_shake", zipCode);
                         }
@@ -120,6 +120,13 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
         for (Node node : nodes) {
             Wearable.MessageApi.sendMessage(
                     mWatchApiClient, node.getId(), path, text.getBytes());
+        }
+    }
+
+    private void sendMessage2(final String path, final String text ) {
+        for (Node node : nodes) {
+            Wearable.MessageApi.sendMessage(
+                    mWatchApiClient, node.getId(), path, null);
         }
     }
 

@@ -4,4 +4,5 @@
     <string name="title_activity_candidates_view">CandidatesView</string>
     <string name="title_activity_candidate_view">CandidateView</string>
     <string name="title_activity_detailed_candidate_view">DetailedCandidateView</string>
+
 </resources>

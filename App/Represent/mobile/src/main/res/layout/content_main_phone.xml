@@ -34,20 +34,23 @@
         android:src="@mipmap/location_button"
         android:backgroundTint="#ffffff"
         android:baselineAlignBottom="false"
-        android:layout_marginTop="166dp"
-        android:layout_marginEnd="81dp"
+        android:layout_marginTop="165dp"
+        android:cropToPadding="true"
+        android:layout_marginEnd="86dp"
         android:layout_alignParentTop="true"
-        android:layout_alignEnd="@+id/submit_button"
-        android:cropToPadding="true" />
+        android:layout_alignParentEnd="true" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
         android:text="Submit"
+        android:textColor="#FFFFFF"
         android:id="@+id/submit_button"
         android:background="@drawable/mybutton"
         android:elegantTextHeight="false"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_marginBottom="9dp"
         android:layout_alignBottom="@+id/editText"
-        android:layout_toEndOf="@+id/editText" />
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

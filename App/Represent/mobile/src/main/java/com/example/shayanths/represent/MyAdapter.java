@@ -3,9 +3,14 @@ package com.example.shayanths.represent;
 /**
  * Created by ShayanthS on 3/1/16.
  */
+import android.app.ProgressDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +18,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     private ArrayList<PersonData> peopleDataSet;
+    private ProgressDialog progressBar;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -40,8 +47,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         }
     }
 
-    public MyAdapter(ArrayList<PersonData> people) {
+    public MyAdapter(ArrayList<PersonData> people, ProgressDialog progress) {
         this.peopleDataSet = people;
+        this.progressBar = progress;
     }
 
     @Override
@@ -76,7 +84,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         textViewEmail.setText(email);
         textViewWebsite.setText(website);
         textViewTwitter.setText(twitterQuote);
-        imageView.setImageResource(peopleDataSet.get(listPosition).getImage());
+
+        //TODO: Change this back to integer.
+
+
+
+
+        new DownloadImageTask((ImageView) imageView)
+                .execute(peopleDataSet.get(listPosition).getImage());
+
+//        imageView.setImageResource(peopleDataSet.get(listPosition).getImage());
+
         if(party.equals("Republican")){
             cardLayout.setBackgroundColor(Color.parseColor("#DC143C"));
             cardLayout.setUseCompatPadding(true);
@@ -93,5 +111,30 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public int getItemCount() {
         return peopleDataSet.size();
+    }
+
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
     }
 }

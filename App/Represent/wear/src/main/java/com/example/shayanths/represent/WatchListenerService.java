@@ -24,11 +24,11 @@ public class WatchListenerService extends WearableListenerService {
         //(here, fred vs lexy)
 
         if( messageEvent.getPath().equalsIgnoreCase( FRED_FEED ) ) {
-            String value = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+            String peopleDataSet = new String(messageEvent.getData(), StandardCharsets.UTF_8);
             Intent intent = new Intent(this, MainWearActivity.class );
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             //you need to add this flag since you're starting a new activity from a service
-            intent.putExtra("ZipCode", value);
+            intent.putExtra("People", peopleDataSet);
             Log.d("T", "about to start watch MainActivity with CAT_NAME: Fred");
             startActivity(intent);
         } else if (messageEvent.getPath().equalsIgnoreCase( LEXY_FEED )) {

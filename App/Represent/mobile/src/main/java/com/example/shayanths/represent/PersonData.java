@@ -1,9 +1,11 @@
 package com.example.shayanths.represent;
 
+import java.io.Serializable;
+
 /**
  * Created by ShayanthS on 3/1/16.
  */
-public class PersonData {
+public class PersonData implements Serializable {
 
 
     String name;
@@ -14,10 +16,11 @@ public class PersonData {
     String twitterQuote;
     String[] committees;
     String[] bills;
-    int image;
+    String cand_id;
+    String image;
     int id_;
 
-    public PersonData(String name, String email, String endDate, String party, String website,  String twitterQuote, String[] committees, String[] bills,  int image, int id_) {
+    public PersonData(String name, String email, String endDate, String party, String website,  String twitterQuote, String[] committees, String[] bills,  String image, String cand_id,  int id_) {
         this.name = name;
         this.email = email;
         this.endDate = endDate;
@@ -27,6 +30,7 @@ public class PersonData {
         this.committees = committees;
         this.bills = bills;
         this.image = image;
+        this.cand_id = cand_id;
         this.id_ = id_;
     }
 
@@ -61,11 +65,21 @@ public class PersonData {
         return bills;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
+    public String getCand_id() {return cand_id;}
+
     public int getId() {
         return id_;
+    }
+
+    public void setCommittees(String[] committees){
+        this.committees = committees;
+    }
+
+    public void setBills(String[] bills) {
+        this.bills = bills;
     }
 }

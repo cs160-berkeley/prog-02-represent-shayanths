@@ -29,6 +29,8 @@ public class ShakenData {
             {"Clean Energy Bill : 12/12/10", "Raise Taxes : 12/12/06", "HealthCare Reform : 12/12/15",
                     "Preservation : 12/4/05", "Solar Power : 9/14/99", "Clean Energy 2.0 : 12/12/12"}
     };
+    static String[] fake_pic = {"0", "0", "0"};
     static Integer[] drawableArray = {R.mipmap.cruz, R.mipmap.sanders, R.mipmap.hillary};
-    static Integer[] id_ = {0, 1, 2};
+    static String[] cand_id = {"L00000", "L00000", "L000000"};
+    static int[] id_ = {0, 1, 2};
 }

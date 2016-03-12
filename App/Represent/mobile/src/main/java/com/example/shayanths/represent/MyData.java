@@ -30,7 +30,10 @@ public class MyData {
                                     {"Pipeline : 12/12/10", "Lower Taxes : 12/12/06", "China Taxes : 12/12/15",
                                             "Preservation : 12/4/05", "Oil & Money : 9/14/99", "Mars : 12/12/12"}
                             };
+    static String[] fake_pic = {"0", "0", "0"};
     static Integer[] drawableArray = {R.mipmap.trump, R.mipmap.mccain, R.mipmap.obama};
-    static Integer[] id_ = {0, 1, 2};
+    static String[] cand_id = {"L00000", "L00000", "L000000"};
+    static String[] bioguide = {"000","0001","00003"};
+    static int[] id_ = {0, 1, 2};
 }
 

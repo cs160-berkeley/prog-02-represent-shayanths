@@ -1,15 +1,20 @@
 package com.example.shayanths.represent;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.Image;
+import android.os.AsyncTask;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
@@ -23,7 +28,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView textViewName;
-        ImageView imageViewIcon;
+        TextView partyName;
         CardView cardLayout;
         TextView text1;
         TextView text2;
@@ -37,7 +42,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             super(itemView);
             if (viewType == 0) {
                 this.textViewName = (TextView) itemView.findViewById(R.id.firstName);
-                this.imageViewIcon = (ImageView) itemView.findViewById(R.id.imageView);
+                this.partyName = (TextView) itemView.findViewById(R.id.party_text);
                 this.cardLayout = (CardView) itemView.findViewById(R.id.card_view);
             }
             else if (viewType == 1){
@@ -86,7 +91,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(final MyViewHolder holder, final int listPosition) {
 
 
-        if (listPosition == 3){
+        if (listPosition == peopleDataSet.size() - 1){
 
             TextView textView1 = holder.text1;
             TextView textView2 = holder.text2;
@@ -97,23 +102,33 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             TextView textView7 = holder.text7;
 
             textView1.setText("Voting Results");
-            textView2.setText(pollDataSet.get(0).getCounty());
-            textView3.setText(pollDataSet.get(0).getState());
-            textView4.setText(pollDataSet.get(0).getPresident0());
-            textView5.setText(pollDataSet.get(0).getPresident1());
-            textView6.setText(pollDataSet.get(0).getVote0());
-            textView7.setText(pollDataSet.get(0).getVote1());
+            if (pollDataSet.size() > 0) {
+                textView2.setText(pollDataSet.get(0).getCounty());
+                textView3.setText(pollDataSet.get(0).getState());
+                textView4.setText(pollDataSet.get(0).getPresident0());
+                textView5.setText(pollDataSet.get(0).getPresident1());
+                textView6.setText(pollDataSet.get(0).getVote0());
+                textView7.setText(pollDataSet.get(0).getVote1());
+            } else{
+                textView2.setText(" ");
+                textView3.setText(" ");
+                textView4.setText(" ");
+                textView5.setText(" ");
+                textView6.setText(" ");
+                textView7.setText(" ");
+            }
         }
         else {
             TextView textViewName = holder.textViewName;
-            ImageView imageView = holder.imageViewIcon;
+            TextView partyName = holder.partyName;
             CardView cardLayout = holder.cardLayout;
 
             String contentName = peopleDataSet.get(listPosition).getName();
             String party = peopleDataSet.get(listPosition).getParty();
 
             textViewName.setText(contentName);
-            imageView.setImageResource(peopleDataSet.get(listPosition).getImage());
+            partyName.setText(party);
+
             if (party.equals("Republican")) {
                 cardLayout.setBackgroundColor(Color.parseColor("#DC143C"));
                 cardLayout.setUseCompatPadding(true);
@@ -130,7 +145,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public int getItemViewType(int position) {
         int viewType = 0; //Default is 1
-        if (position == 3) viewType = 1; //if zero, it will be a header view
+        if (position == peopleDataSet.size() - 1) viewType = 1; //if zero, it will be a header view
         return viewType;
     }
 

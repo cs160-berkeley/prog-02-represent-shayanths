@@ -11,7 +11,9 @@ import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.gms.wearable.DataMap;
 import com.google.android.gms.wearable.MessageEvent;
+import com.google.android.gms.wearable.PutDataMapRequest;
 import com.google.android.gms.wearable.WearableListenerService;
 
 import java.nio.charset.StandardCharsets;
@@ -29,21 +31,22 @@ public class PhoneListenerService extends WearableListenerService {
         Log.d("T", "in PhoneListenerService, got: " + messageEvent.getPath());
         if( messageEvent.getPath().equalsIgnoreCase(TOAST) ) {
 
-            String candidate_id = new String(messageEvent.getData(), StandardCharsets.UTF_8);
-            String[] stringArray = candidate_id.split("\\s+");
-            int candID;
-            String dataSet = "";
-            if (stringArray.length > 1){
-                candID = new Integer(stringArray[0]);
-                dataSet = stringArray[1];
-            }
-            else{
-                candID = new Integer(stringArray[0]);
-            }
+            String person_data = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+//            String[] stringArray = candidate_id.split("\\s+");
+//            int candID;
+//            String dataSet = "";
+//            if (stringArray.length > 1){
+//                candID = new Integer(stringArray[0]);
+//                dataSet = stringArray[1];
+//            }
+//            else{
+//                candID = new Integer(stringArray[0]);
+//            }
             Intent intent = new Intent(this, DetailedCandidateView.class );
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra("Cand_ID", candID);
-            intent.putExtra("dataSet", dataSet);
+            intent.putExtra("person_data", person_data);
+//            intent.putExtra("Cand_ID", candID);
+//            intent.putExtra("dataSet", dataSet);
             startActivity(intent);
 
 //            // Value contains the String we sent over in WatchToPhoneService, "good job"
@@ -61,15 +64,18 @@ public class PhoneListenerService extends WearableListenerService {
             // replace sending a toast with, like, starting a new activity or something.
             // who said skeleton code is untouchable? #breakCSconceptions
 
-        }else if (messageEvent.getPath().equalsIgnoreCase(SHAKE)){
+        }else if (messageEvent.getPath().equalsIgnoreCase(SHAKE)) {
             String zipCode = new String(messageEvent.getData(), StandardCharsets.UTF_8);
 
-            Intent intent = new Intent(this, CandidateView.class );
+            Intent intent = new Intent(this, CandidateView.class);
 
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra("ZipCode", zipCode);
+            intent.putExtra("zipCode", zipCode);
             startActivity(intent);
 
+        }else if (messageEvent.getPath().equalsIgnoreCase("/send-pets")){
+            final PutDataMapRequest putRequest = PutDataMapRequest.create("/send-pets");
+            final DataMap map = putRequest.getDataMap();
         }
         else {
             super.onMessageReceived( messageEvent );
